@@ -1,5 +1,6 @@
 import React from "react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
+import Main from "../main/Main";
 
 const Header = () => {
   return (
@@ -12,19 +13,15 @@ const Header = () => {
       >
         <TabList>
           <Tab>Trending</Tab>
-          <Tab>Music</Tab>
-          <Tab>Meme</Tab>
+          <Tab>Search</Tab>
         </TabList>
 
         <TabPanels>
           <TabPanel>
-            <p>Render Trending</p>
+            <Main></Main>
           </TabPanel>
           <TabPanel>
             <p>Music</p>
-          </TabPanel>
-          <TabPanel>
-            <p>Meme</p>
           </TabPanel>
         </TabPanels>
       </Tabs>

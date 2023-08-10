@@ -1,0 +1,21 @@
+{
+  "name": "midterm-rezky",
+  "version": "1.0.0",
+  "description": "Midterm for YABB Fullstack Engineering",
+  "main": "app.js",
+  "author": "Rezky Putratama Raharjo",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon app.js",
+    "database": "node database/insert.js"
+  },
+  "type": "module",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.4.0",
+    "nodemon": "^3.0.1"
+  }
+}
