@@ -1,9 +1,43 @@
 import React from "react";
-import Header from "./components/header/Header";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { Box, Tabs, TabList, Tab, TabPanels, TabPanel } from "@chakra-ui/react";
+import VideoDetail from "./components/main/VideoDetail";
+import Main from "./components/main/Main";
 const App = () => {
   return (
     <div>
-      <Header></Header>
+      <Router>
+        <Tabs
+          isFitted
+          variant="solid-rounded"
+          colorScheme="facebook"
+          style={{ padding: "10px" }}
+        >
+          <TabList as={Link} to="/">
+            <Tab>Home</Tab>
+          </TabList>
+          <TabList as={Link} to="/search">
+            <Tab>Search</Tab>
+          </TabList>
+
+          <Switch>
+            <TabPanels>
+              <TabPanel>
+                <Route exact path="/">
+                  <Main></Main>
+                </Route>
+              </TabPanel>
+              <TabPanel>
+                <p>Search</p>
+              </TabPanel>
+            </TabPanels>
+          </Switch>
+        </Tabs>
+        sss
+        <Route path="/video/:id">
+          <VideoDetail></VideoDetail>
+        </Route>
+      </Router>
     </div>
   );
 };

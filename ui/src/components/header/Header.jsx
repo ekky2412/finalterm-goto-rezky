@@ -1,4 +1,5 @@
 import React from "react";
+import { Router, Link } from "react-router-dom";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import Main from "../main/Main";
 
