@@ -12,6 +12,7 @@ export const getVideosUsecase = async () => {
   videos.forEach((p, i = 0) => {
     newVideos[i] = {
       videoID: p.videoID,
+      title: p.title,
       urlThumbnail: p.urlThumbnail,
       urlVideo: p.urlVideo,
     };
