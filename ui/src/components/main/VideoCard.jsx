@@ -9,7 +9,7 @@ import {
 
 const VideoCard = ({ video }) => {
   return (
-    <Card maxW="md">
+    <Card>
       <CardBody>
         <Image objectFit="cover" src={video.urlThumbnail} alt="Chakra UI" />
       </CardBody>

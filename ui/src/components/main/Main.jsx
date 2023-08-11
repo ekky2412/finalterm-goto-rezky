@@ -30,7 +30,8 @@ const Main = () => {
   return (
     <div>
       <SimpleGrid
-        spacing={4}
+        spacing={5}
+        columns={3}
         templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
       >
         {videosCard}
