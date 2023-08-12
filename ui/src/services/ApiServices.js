@@ -3,6 +3,13 @@ export async function getAllVideos() {
   return await response.json();
 }
 
+export async function getVideo(videoId) {
+  const response = await fetch(
+    `http://localhost:5000/api/v1/videos/${videoId}`
+  );
+  return await response.json();
+}
+
 export async function postComment(data) {
   const response = await fetch("http://localhost:5000/api/v1/comments", {
     method: "POST",

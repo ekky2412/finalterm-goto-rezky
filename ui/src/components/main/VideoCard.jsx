@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, LinkBox, LinkOverlay, Box } from "@chakra-ui/react";
+import { Text, Box } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 const VideoCard = ({ video }) => {
