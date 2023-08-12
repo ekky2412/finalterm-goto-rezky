@@ -1,8 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { Box, Tabs, TabList, Tab, TabPanels, TabPanel } from "@chakra-ui/react";
-import VideoDetail from "./components/main/VideoDetail";
+import VideoDetail from "./components/video-detail/VideoDetail";
 import Main from "./components/main/Main";
+import SearchPage from "./components/search/SearchPage";
 const App = () => {
   return (
     <div>
@@ -28,12 +29,11 @@ const App = () => {
                 </Route>
               </TabPanel>
               <TabPanel>
-                <p>Search</p>
+                <SearchPage></SearchPage>
               </TabPanel>
             </TabPanels>
           </Switch>
         </Tabs>
-        sss
         <Route path="/video/:id">
           <VideoDetail></VideoDetail>
         </Route>

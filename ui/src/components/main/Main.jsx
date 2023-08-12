@@ -2,7 +2,6 @@ import { React, useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { getAllVideos } from "../../services/ApiServices";
 import VideoCard from "./VideoCard";
-import VideoDetail from "./VideoDetail";
 import { SimpleGrid } from "@chakra-ui/react";
 
 const Main = () => {
