@@ -8,3 +8,12 @@ export const getVideosRepo = async () => {
     return err;
   }
 };
+
+export const getVideosByIdRepo = async (videoID) => {
+  try {
+    const videos = await Video.find({ videoID: videoID });
+    return videos;
+  } catch (err) {
+    return err;
+  }
+};

@@ -1,4 +1,7 @@
-import { getVideosRepo } from "../../repositories/videos/videos.js";
+import {
+  getVideosRepo,
+  getVideosByIdRepo,
+} from "../../repositories/videos/videos.js";
 
 export const getVideosUsecase = async () => {
   const videos = await getVideosRepo();
@@ -21,3 +24,22 @@ export const getVideosUsecase = async () => {
 
   return newVideos;
 };
+
+export const getVideosByIdUsecase = async (videoID) => {
+  const videos = await getVideosByIdRepo(videoID);
+
+  if (!videos || videos.length == 0) {
+    return null;
+  }
+
+  const newVideos = {
+    videoID: videos[0].videoID,
+    title: videos[0].title,
+    urlThumbnail: videos[0].urlThumbnail,
+    urlVideo: videos[0].urlVideo,
+  };
+
+  return newVideos;
+};
+
+// ADD GET SPECIFIC VIDEO

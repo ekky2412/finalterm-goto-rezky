@@ -4,6 +4,7 @@ import {
   getProducts,
   getComments,
   postComment,
+  getVideo,
 } from "../../services/ApiServices";
 
 const VideoDetail = ({ videoUrl }) => {
