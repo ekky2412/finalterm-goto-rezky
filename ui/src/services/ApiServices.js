@@ -4,9 +4,7 @@ export async function getAllVideos() {
 }
 
 export async function getVideo(videoId) {
-  const response = await fetch(
-    `http://localhost:5000/api/v1/videos/${videoId}`
-  );
+  const response = await fetch(`http://localhost:5000/api/v1/video/${videoId}`);
   return await response.json();
 }
 

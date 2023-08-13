@@ -6,15 +6,21 @@ import {
   postComment,
   getVideo,
 } from "../../services/ApiServices";
+import VideoEmbed from "./VideoEmbed";
+import ProductsList from "./ProductsList";
+import { SimpleGrid } from "@chakra-ui/react";
 
 const VideoDetail = ({ videoUrl }) => {
   const { id } = useParams();
   const [products, setProducts] = useState([]);
   const [comments, setComments] = useState([]);
+  const [video, setVideo] = useState([]);
   useEffect(() => {
     getVideo(id).then((video) => {
-      console.log(video);
-      setProducts(video);
+      setVideo({
+        ...video,
+        urlVideo: video.urlVideo.replace("/watch?v=", "/embed/"),
+      });
     });
 
     getProducts(id).then((products) => {
@@ -26,20 +32,25 @@ const VideoDetail = ({ videoUrl }) => {
       console.log(comments);
       setComments(comments);
     });
-  }, []);
+  }, [comments]);
+
+  const ProductRow = (product, index) => {
+    return <ProductsList key={index} product={product}></ProductsList>;
+  };
+
+  const productCard = products.map((product, index) => ProductRow(product));
+
   return (
     <div>
-      Testing video ada {id}
-      ada product, dan comments
-      <iframe
-        width="560"
-        height="315"
-        src={videoUrl}
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
-      ></iframe>
+      <SimpleGrid
+        spacing={5}
+        columns={3}
+        templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
+      >
+        <SimpleGrid column={1}>{productCard}</SimpleGrid>
+
+        <VideoEmbed urlVideo={video.urlVideo}></VideoEmbed>
+      </SimpleGrid>
     </div>
   );
 };
