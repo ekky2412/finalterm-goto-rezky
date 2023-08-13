@@ -9,8 +9,9 @@ import {
 import VideoEmbed from "./VideoEmbed";
 import ProductsList from "./ProductsList";
 import { SimpleGrid, Box } from "@chakra-ui/react";
+import CommentsBox from "./CommentsBox";
 
-const VideoDetail = ({ videoUrl }) => {
+const VideoDetail = () => {
   const { id } = useParams();
   const [products, setProducts] = useState([]);
   const [comments, setComments] = useState([]);
@@ -32,7 +33,16 @@ const VideoDetail = ({ videoUrl }) => {
       console.log(comments);
       setComments(comments);
     });
+  }, []);
+
+  useEffect(() => {
+    getComments(id).then((comments) => {
+      // console.log(comments);
+      setComments(comments);
+    });
   }, [comments]);
+
+  const handleSendComments = (username, message) => {};
 
   const ProductRow = (product, index) => {
     return <ProductsList key={index} product={product}></ProductsList>;
@@ -42,14 +52,13 @@ const VideoDetail = ({ videoUrl }) => {
 
   return (
     <div>
-      <SimpleGrid spacing={5} columns={3} mx="auto">
+      <SimpleGrid spacing={5} columns={3} px={5} mx="auto" height="100%">
         <Box
           column={1}
-          h={400}
+          height="100%"
           overflowY="auto"
           css={{
             "&::-webkit-scrollbar": { width: "4px" },
-            "&::-webkit-scrollbar-track": { width: "6px" },
             "&::-webkit-scrollbar-thumb": {
               borderRadius: "24px",
             },
@@ -58,6 +67,11 @@ const VideoDetail = ({ videoUrl }) => {
           {productCard}
         </Box>
         <VideoEmbed urlVideo={video.urlVideo}></VideoEmbed>
+        <CommentsBox
+          comments={comments}
+          setComments={setComments}
+          handleSendComments={handleSendComments}
+        ></CommentsBox>
       </SimpleGrid>
     </div>
   );
