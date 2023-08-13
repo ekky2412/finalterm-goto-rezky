@@ -18,6 +18,10 @@ const productSchema = mongoose.Schema(
       required: true,
       type: "Number",
     },
+    imageUrl: {
+      required: true,
+      type: "String",
+    },
     videoID: {
       required: true,
       type: "String",

@@ -14,6 +14,7 @@ export const getProductsByUsecase = async (videoId) => {
       productID: p.productID,
       title: p.title,
       linkProduct: p.linkProduct,
+      imageUrl: p.imageUrl,
       price: p.price,
     };
     i++;
