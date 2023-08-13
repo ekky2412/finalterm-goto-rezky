@@ -8,7 +8,7 @@ import {
 } from "../../services/ApiServices";
 import VideoEmbed from "./VideoEmbed";
 import ProductsList from "./ProductsList";
-import { SimpleGrid } from "@chakra-ui/react";
+import { SimpleGrid, Box } from "@chakra-ui/react";
 
 const VideoDetail = ({ videoUrl }) => {
   const { id } = useParams();
@@ -42,13 +42,21 @@ const VideoDetail = ({ videoUrl }) => {
 
   return (
     <div>
-      <SimpleGrid
-        spacing={5}
-        columns={3}
-        templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
-      >
-        <SimpleGrid column={1}>{productCard}</SimpleGrid>
-
+      <SimpleGrid spacing={5} columns={3} mx="auto">
+        <Box
+          column={1}
+          h={400}
+          overflowY="auto"
+          css={{
+            "&::-webkit-scrollbar": { width: "4px" },
+            "&::-webkit-scrollbar-track": { width: "6px" },
+            "&::-webkit-scrollbar-thumb": {
+              borderRadius: "24px",
+            },
+          }}
+        >
+          {productCard}
+        </Box>
         <VideoEmbed urlVideo={video.urlVideo}></VideoEmbed>
       </SimpleGrid>
     </div>
