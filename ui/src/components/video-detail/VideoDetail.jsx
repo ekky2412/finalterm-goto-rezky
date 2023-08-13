@@ -8,7 +8,7 @@ import {
 } from "../../services/ApiServices";
 import VideoEmbed from "./VideoEmbed";
 import ProductsList from "./ProductsList";
-import { SimpleGrid, Box } from "@chakra-ui/react";
+import { SimpleGrid, Box, Button } from "@chakra-ui/react";
 import CommentsBox from "./CommentsBox";
 
 const VideoDetail = () => {
@@ -16,6 +16,9 @@ const VideoDetail = () => {
   const [products, setProducts] = useState([]);
   const [comments, setComments] = useState([]);
   const [video, setVideo] = useState([]);
+  const [usernameState, setUsername] = useState({});
+  const [commentState, setComment] = useState({});
+
   useEffect(() => {
     getVideo(id).then((video) => {
       setVideo({
@@ -42,38 +45,49 @@ const VideoDetail = () => {
     });
   }, [comments]);
 
-  const handleSendComments = (username, message) => {};
+  function handleSendComments() {
+    const newComment = {
+      username: usernameState,
+      comment: commentState,
+    };
+
+    postComment(newComment, id).then((comments) => {
+      console.log(comments);
+    });
+  }
 
   const ProductRow = (product, index) => {
     return <ProductsList key={index} product={product}></ProductsList>;
   };
 
-  const productCard = products.map((product, index) => ProductRow(product));
+  const productCard = products.map((product, index) =>
+    ProductRow(product, index)
+  );
 
   return (
-    <div>
-      <SimpleGrid spacing={5} columns={3} px={5} mx="auto" height="100%">
-        <Box
-          column={1}
-          height="100%"
-          overflowY="auto"
-          css={{
-            "&::-webkit-scrollbar": { width: "4px" },
-            "&::-webkit-scrollbar-thumb": {
-              borderRadius: "24px",
-            },
-          }}
-        >
-          {productCard}
-        </Box>
-        <VideoEmbed urlVideo={video.urlVideo}></VideoEmbed>
-        <CommentsBox
-          comments={comments}
-          setComments={setComments}
-          handleSendComments={handleSendComments}
-        ></CommentsBox>
-      </SimpleGrid>
-    </div>
+    <SimpleGrid spacing={5} columns={3} px={5} mx="auto" height={"100%"}>
+      <Box
+        column={1}
+        maxHeight="80%"
+        overflowY="auto"
+        css={{
+          "&::-webkit-scrollbar": { width: "4px" },
+          "&::-webkit-scrollbar-thumb": {
+            borderRadius: "24px",
+          },
+        }}
+      >
+        {productCard}
+      </Box>
+      <VideoEmbed urlVideo={video.urlVideo}></VideoEmbed>
+      <CommentsBox
+        comments={comments}
+        comment={commentState}
+        setComment={setComment}
+        setUsername={setUsername}
+        handleSendComments={handleSendComments}
+      ></CommentsBox>
+    </SimpleGrid>
   );
 };
 

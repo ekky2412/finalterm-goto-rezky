@@ -3,7 +3,7 @@ import { Flex, Text, Avatar } from "@chakra-ui/react";
 
 const Comments = ({ comments }) => {
   return (
-    <Flex h="80%" flexDirection="column" p={3} overflowY="scroll">
+    <Flex maxH="50%" flexDirection="column" p={3} overflowY="scroll">
       {comments.map((item, index) => {
         return (
           <Flex key={index} w="100%" my={2} p={1}>

@@ -1,10 +1,14 @@
-import { Divider, Flex } from "@chakra-ui/react";
-import React from "react";
+import { Divider, Flex, Input, Button } from "@chakra-ui/react";
+import { React, useState, useEffect } from "react";
 import Header from "./comment/Header";
 import Comments from "./comment/Comments";
-import Footer from "./comment/Footer";
 
-const CommentsBox = ({ comments, setComments, handleSendMessage }) => {
+const CommentsBox = ({
+  comments,
+  setComment,
+  setUsername,
+  handleSendComments,
+}) => {
   return (
     <Flex
       border="1px solid"
@@ -12,16 +16,34 @@ const CommentsBox = ({ comments, setComments, handleSendMessage }) => {
       w="100%"
       flexDirection="column"
       mx="auto"
+      maxH="80%"
     >
       <Header></Header>
       <Divider></Divider>
       <Comments comments={comments}></Comments>
       <Divider></Divider>
-      <Footer
-        comments={comments}
-        setComments={setComments}
-        handleSendMessage={handleSendMessage}
-      ></Footer>
+      <Flex p={5} flexDirection="column">
+        <Input
+          onChange={(e) => setUsername(e.target.value)}
+          my={2}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSendComments;
+            }
+          }}
+          name="username"
+          placeholder="Username"
+        ></Input>
+        <Input
+          onChange={(e) => {
+            setComment(e.target.value);
+          }}
+          my={2}
+          name="comment"
+          placeholder="Comment"
+        ></Input>
+        <Button onClick={handleSendComments}>Kirim</Button>
+      </Flex>
     </Flex>
   );
 };
