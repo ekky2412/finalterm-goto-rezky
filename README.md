@@ -256,7 +256,7 @@ DB_URL = mongodb://{your_server_ip}/{database_name}
 Then Go to `/ui` directory then create an .env extension files with inside like this :
 
 ```
-VITE_API_URL = {your_api_server_ip}
+API_URL = {your_api_server_ip}
 ```
 
 Change the port and then change {your_server_ip} and {database_name} based on your mongodb server.
