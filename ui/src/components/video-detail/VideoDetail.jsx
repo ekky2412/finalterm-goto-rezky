@@ -39,6 +39,20 @@ const VideoDetail = () => {
   }, []);
 
   useEffect(() => {
+    getProducts(id).then((products) => {
+      console.log(products);
+      setProducts(products);
+    });
+
+    getVideo(id).then((video) => {
+      setVideo({
+        ...video,
+        urlVideo: video.urlVideo.replace("/watch?v=", "/embed/"),
+      });
+    });
+  }, [products, video]);
+
+  useEffect(() => {
     getComments(id).then((comments) => {
       // console.log(comments);
       setComments(comments);
@@ -65,10 +79,10 @@ const VideoDetail = () => {
   );
 
   return (
-    <SimpleGrid spacing={5} columns={3} px={5} mx="auto" height={"100%"}>
+    <SimpleGrid spacing={5} columns={3} px={5} mx="auto" height={"50vw"}>
       <Box
         column={1}
-        maxHeight="80%"
+        maxHeight="60%"
         overflowY="auto"
         css={{
           "&::-webkit-scrollbar": { width: "4px" },
